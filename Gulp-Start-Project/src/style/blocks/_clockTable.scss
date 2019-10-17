@@ -2,13 +2,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: rosybrown;
-    height: 70vh;
+    background: rgb(182, 180, 190);
+    height: 80vh;
     width: 70%;
 
     &__clock {
-        width: 300px;
-        height: 300px;
+        width: 200px;
+        height: 150px;
 
         &_moscow {
             background: crimson;

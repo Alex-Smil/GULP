@@ -7,7 +7,7 @@ let gulp         = require('gulp'),
     notify       = require('gulp-notify'),
     htmlMin      = require('gulp-htmlmin'),
     concat       = require('gulp-concat'),
-    babel        = require('gulp-babel'), // Вместо terserJs
+    babel        = require('gulp-babel'),
     rename       = require('gulp-rename'),
     sass         = require('gulp-sass'),
     sourcemaps   = require('gulp-sourcemaps'),
@@ -27,8 +27,6 @@ function htmlHandler() {
 function sassHandler() {
     return gulp.src('src/style/**/*.scss') // откуда
                 .pipe(sourcemaps.init()) // инициализируем создание Source Maps
-                // .pipe(sass().on("error", notify.onError())) // компилируем файл .css
-                // .pipe(gulp.dest('src/style/')) // Сохраняем dev версию, потом опять берем
                 .pipe(sass({ outputStyle: 'compressed' }).on("error", notify.onError())) // компилируем сжатый файл .css
                 .pipe(rename({ suffix: '.min', prefix : '' })) // переименовываем файл в .min.css
                 .pipe(autoprefixer(['last 15 versions'])) // добавляем вендорные префиксы
@@ -52,7 +50,7 @@ function jsHandler() {
 
 // Clear /dist dir
 function clearDir() {
-    return delFiles.sync(['build/']);
+    return delFiles.sync(['build/*']);
 }
 
 // Автоперезапуск вкладки, task для севрвера
@@ -85,7 +83,6 @@ exports.watchFiles = watchFiles;
 exports.server = server;
 
 exports.default = gulp.parallel(
-    
     htmlHandler, 
     jsHandler, 
     sassHandler, 
