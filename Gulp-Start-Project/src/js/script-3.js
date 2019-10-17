@@ -1,3 +1,4 @@
 function multiplication(a, b) {
-    return a * b;
+    var c = a * b;
+    return c;
 }

@@ -1,4 +1,3 @@
-
 // *****************************************************
 // ***** Данная конфигурация написана для GULP 4.0 *****
 // ***************************************************** 
@@ -44,7 +43,7 @@ function jsHandler() {
     return gulp.src('src/js/**/*.js') // откуда
                 .pipe(sourcemaps.init())
                 .pipe(babel({
-                    presets: ['@babel/env']
+                    presets: ['minify']
                 }))
                 .pipe(concat('bundle.js')) // Склейка файлов в один, all.js - имя на выходе
                 .pipe(rename({suffix: '.min'}))
