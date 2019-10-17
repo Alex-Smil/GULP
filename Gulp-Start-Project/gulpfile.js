@@ -19,17 +19,16 @@ let gulp         = require('gulp'),
 // html 
 function htmlHandler() {
     return gulp.src(['src/**/*.html']) // откуда
-                .pipe(htmlMin({collapseWhitespace: true})) // Помещаем файл(ы) в поток (в трубу), опция collapseWhitespace: true - убрать все пробелы
+                .pipe(htmlMin({collapseWhitespace: true}).on("error", notify.onError())) // Помещаем файл(ы) в поток (в трубу), опция collapseWhitespace: true - убрать все пробелы
                 .pipe(gulp.dest('./build')); // куда 
 }
 
 // sass
 function sassHandler() {
     return gulp.src('src/style/**/*.scss') // откуда
-                // вместо concat-sass добавил '_' underscore к имени файлов в папке blocks , с ним файлы не компелируются, т.е. sass() их не затрагивает, все тянется из main.scss
                 .pipe(sourcemaps.init()) // инициализируем создание Source Maps
-                .pipe(sass().on("error", notify.onError())) // компилируем файл .css
-                .pipe(gulp.dest('src/style/')) // Сохраняем dev версию, потом опять берем
+                // .pipe(sass().on("error", notify.onError())) // компилируем файл .css
+                // .pipe(gulp.dest('src/style/')) // Сохраняем dev версию, потом опять берем
                 .pipe(sass({ outputStyle: 'compressed' }).on("error", notify.onError())) // компилируем сжатый файл .css
                 .pipe(rename({ suffix: '.min', prefix : '' })) // переименовываем файл в .min.css
                 .pipe(autoprefixer(['last 15 versions'])) // добавляем вендорные префиксы
@@ -44,7 +43,7 @@ function jsHandler() {
                 .pipe(sourcemaps.init())
                 .pipe(babel({
                     presets: ['minify']
-                }))
+                }).on("error", notify.onError()))
                 .pipe(concat('bundle.js')) // Склейка файлов в один, all.js - имя на выходе
                 .pipe(rename({suffix: '.min'}))
                 .pipe(sourcemaps.write('.'))
