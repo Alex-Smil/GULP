@@ -1,0 +1,25 @@
+.clockTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rosybrown;
+    height: 70vh;
+    width: 70%;
+
+    &__clock {
+        width: 300px;
+        height: 300px;
+
+        &_moscow {
+            background: crimson;
+        }
+
+        &_la-pas {
+            background: powderblue;
+        }
+
+        &_new-york {
+            background: salmon;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+.myContainer {
+  max-width: 80%;
+  margin: 0 auto;
+  height: 100vh;
+  background: yellowgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.clockTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rosybrown;
+  height: 70vh;
+  width: 70%; }
+  .clockTable__clock {
+    width: 300px;
+    height: 300px; }
+    .clockTable__clock_moscow {
+      background: crimson; }
+    .clockTable__clock_la-pas {
+      background: powderblue; }
+    .clockTable__clock_new-york {
+      background: salmon; }
